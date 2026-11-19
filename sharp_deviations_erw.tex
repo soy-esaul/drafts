@@ -1,0 +1,34 @@
+\documentclass{amsart}
+\usepackage{mathtools}
+\usepackage{glossaries-extra}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+\title{Sharp Large Deviations for the Elephant Random Walk}
+\date{November 18th, 2026}
+\author{Juan Esaul González Rangel}
+
+\newacronym{erw}{ERW}{Elephant Random Walk}
+
+\begin{document}
+
+\maketitle
+
+Let $S=(S_n, n \ge0)$ be an \gls{erw} with memory parameter $p$ and first step parameter $q$, and define \[ \mu \coloneqq \lim_{n\to\infty} \mathbb E \left[ S_n/n \right] < \infty. \] 
+For any $j \in \mathbb Z$ and every $t>0$, we have
+\begin{align*}
+    \mathbb P ( S_n = j ) = \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v
+\end{align*}
+For $x \in (\mu,1)$, we have 
+\begin{align*}
+    \mathbb P( S_n \ge nx ) &= \sum_{j=\lfloor nx \rfloor}^n \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v = \sum_{j= \lfloor nx \rfloor}^\infty \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v\\
+    &= \frac1{2\pi} \int_{-\pi}^\pi \frac{ e^{-(t+iv)\lfloor nx \rfloor} }{1 - e^{-(t+iv)}}m_n(t+iv) \mathrm d v\\
+    &= \frac{ e^{ -nxt } \phi^n(t) }{2\pi} \int_{-\pi}^\pi \frac{ e^{(nx - \lfloor nx\rfloor )(t+iv)}\frac{m_n(t+iv)}{\phi^n(a;t+iv)} }{ 1- e^{-(t+iv)} }\left(\frac{\phi(t+iv)}{\phi(t)}\right)^n e^{-inxv} \mathrm d v \\
+    &= \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}\mathrm d v + \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\mathrm d v,
+\end{align*}
+where \[\Lambda(z) \coloneqq \log \phi(z), \] and \[ R_n(t+iv) \coloneqq \frac{ \exp\left( (nx - \lfloor nx\rfloor)(t+iv) \right) }{ 1- e^{-\lfloor nx\rfloor (t+iv)} }\frac{m_n(t+iv)}{\phi^n(t+iv)}. \]
+
+\section*{Computations}
+
+
+
+\end{document}
