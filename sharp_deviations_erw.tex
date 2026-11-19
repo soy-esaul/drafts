@@ -8,6 +8,11 @@
 \author{Juan Esaul González Rangel}
 
 \newacronym{erw}{ERW}{Elephant Random Walk}
+\newacronym{ldp}{LDP}{Large Deviation Principle}
+
+\usepackage{biblatex}
+\bibliography{references}
+\usepackage{cleveref}
 
 \begin{document}
 
@@ -19,13 +24,31 @@ For any $j \in \mathbb Z$ and every $t>0$, we have
     \mathbb P ( S_n = j ) = \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v
 \end{align*}
 For $x \in (\mu,1)$, we have 
-\begin{align*}
-    \mathbb P( S_n \ge nx ) &= \sum_{j=\lfloor nx \rfloor}^n \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v = \sum_{j= \lfloor nx \rfloor}^\infty \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v\\
-    &= \frac1{2\pi} \int_{-\pi}^\pi \frac{ e^{-(t+iv)\lfloor nx \rfloor} }{1 - e^{-(t+iv)}}m_n(t+iv) \mathrm d v\\
-    &= \frac{ e^{ -nxt } \phi^n(t) }{2\pi} \int_{-\pi}^\pi \frac{ e^{(nx - \lfloor nx\rfloor )(t+iv)}\frac{m_n(t+iv)}{\phi^n(a;t+iv)} }{ 1- e^{-(t+iv)} }\left(\frac{\phi(t+iv)}{\phi(t)}\right)^n e^{-inxv} \mathrm d v \\
-    &= \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}\mathrm d v + \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\mathrm d v,
-\end{align*}
+\begin{align}
+    \mathbb P( S_n \ge nx ) &= \sum_{j=\lfloor nx \rfloor}^n \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v = \sum_{j= \lfloor nx \rfloor}^\infty \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v \notag \\
+    &= \frac1{2\pi} \int_{-\pi}^\pi \frac{ e^{-(t+iv)\lfloor nx \rfloor} }{1 - e^{-(t+iv)}}m_n(t+iv) \mathrm d v \notag \\
+    &= \frac{ e^{ -nxt } \phi^n(t) }{2\pi} \int_{-\pi}^\pi \frac{ e^{(nx - \lfloor nx\rfloor )(t+iv)}\frac{m_n(t+iv)}{\phi^n(a;t+iv)} }{ 1- e^{-(t+iv)} }\left(\frac{\phi(t+iv)}{\phi(t)}\right)^n e^{-inxv} \mathrm d v \notag \\
+    &= \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}\mathrm d v + \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\mathrm d v, \label{eq:integral}
+\end{align}
 where \[\Lambda(z) \coloneqq \log \phi(z), \] and \[ R_n(t+iv) \coloneqq \frac{ \exp\left( (nx - \lfloor nx\rfloor)(t+iv) \right) }{ 1- e^{-(t+iv)} }\frac{m_n(t+iv)}{\phi^n(t+iv)}. \]
+
+From now on, we must take $t = t_x \coloneqq \arg\max_{t>0} \left( xt - \Lambda(t) \right)$, which is the unique solution to \[ x = \Lambda'(t_x), \] and it exists since $\Lambda$ is strictly convex. The reason for such a choice comes from the fact that the exponential rate in \cref{eq:integral} is indeed $\Lambda^*(x)\coloneqq \sup_{t>0} (xt - \Lambda(t))$, by the known \gls{ldp} for the \gls{erw} (see eg. \cite{franchini2023large}).
+
+For the first integral, we have
+
+\begin{align*}
+    \int_{-\pi}^\pi e^{-n ( ivx - \Lambda(t+iv ) + \Lambda(t) )}\mathrm d v &= \int_{-\epsilon}^\epsilon e^{-n ( ivx - \Lambda(t+iv ) + \Lambda(t) )}\mathrm d v + \int_{[-\epsilon,\epsilon]^c} e^{-n (ivx -\Lambda(t+iv) + \Lambda(t))} \mathrm d v \eqcolon I_1 + I_2.
+\end{align*}
+The second integral can be bounded as follows:
+\begin{align*}
+    |I_2| &\le \int_{[-\epsilon,\epsilon]^c} \left| e^{-n (ivx -\Lambda(t+iv) + \Lambda(t))} \right| \mathrm d v = \int_{[-\epsilon,\epsilon]^c} e^{-n \Re( ivx -\Lambda(t+iv) + \Lambda(t))} \mathrm d v = \int_{[-\epsilon,\epsilon]^c} e^{-n ( -\Re(\Lambda(t+iv)) + \Lambda(t))} \mathrm    d v \\
+    &\le \int_{[-\epsilon,\epsilon]^c} e^{-n (\Lambda(t) - \Re(\Lambda(t+iv))} \mathrm d v 
+\end{align*}
+For the first integral, we have
+\begin{align*}
+    I_1 &= \int_{-\epsilon}^\epsilon e^{-n ( ivx - \Lambda(t+iv ) + \Lambda(t) )}\mathrm d v = \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n ( i \frac{u}{\sqrt{n}}x - \Lambda(t+i\frac{u}{\sqrt{n}} ) + \Lambda(t) )}\mathrm d u = \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n ( i \frac{u}{\sqrt{n}}x - \Lambda(t+i\frac{u}{\sqrt{n}} ) + \Lambda(t) )}\mathrm d u
+\end{align*}
+\printbibliography
 
 \section*{Computations}
 

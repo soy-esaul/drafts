@@ -1,0 +1,61 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{franchini2023large}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=05e5aa2ca56e4a5a1bff0b390848498e}{%
+           family={Franchini},
+           familyi={F\bibinitperiod},
+           given={Simone},
+           giveni={S\bibinitperiod}}}%
+        {{hash=bcd1ae4f9bd1eb932e6ff61798507e7d}{%
+           family={Balzan},
+           familyi={B\bibinitperiod},
+           given={Riccardo},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{b817ea57dd9c733face6fd02bc99cdc0}
+      \strng{fullhash}{b817ea57dd9c733face6fd02bc99cdc0}
+      \strng{fullhashraw}{b817ea57dd9c733face6fd02bc99cdc0}
+      \strng{bibnamehash}{b817ea57dd9c733face6fd02bc99cdc0}
+      \strng{authorbibnamehash}{b817ea57dd9c733face6fd02bc99cdc0}
+      \strng{authornamehash}{b817ea57dd9c733face6fd02bc99cdc0}
+      \strng{authorfullhash}{b817ea57dd9c733face6fd02bc99cdc0}
+      \strng{authorfullhashraw}{b817ea57dd9c733face6fd02bc99cdc0}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review E}
+      \field{number}{6}
+      \field{title}{Large-Deviation Theory of Increasing Returns}
+      \field{volume}{107}
+      \field{year}{2023}
+      \field{pages}{064142}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevE.107.064142
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
