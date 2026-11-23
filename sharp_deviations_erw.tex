@@ -2,6 +2,9 @@
 \usepackage{mathtools}
 \usepackage{glossaries-extra}
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{xcolor}
+
+\renewcommand{\d}{\mathrm d}
 
 \title{Sharp Large Deviations for the Elephant Random Walk}
 \date{November 18th, 2026}
@@ -46,8 +49,13 @@ The second integral can be bounded as follows:
 \end{align*}
 For the first integral, we have
 \begin{align*}
-    I_1 &= \int_{-\epsilon}^\epsilon e^{-n ( ivx - \Lambda(t+iv ) + \Lambda(t) )}\mathrm d v = \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n ( i \frac{u}{\sqrt{n}}x - \Lambda(t+i\frac{u}{\sqrt{n}} ) + \Lambda(t) )}\mathrm d u = \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n ( i \frac{u}{\sqrt{n}}x - \Lambda(t+i\frac{u}{\sqrt{n}} ) + \Lambda(t) )}\mathrm d u
+    I_1 &= \int_{-\epsilon}^\epsilon e^{-n ( ivx - \Lambda(t+iv ) + \Lambda(t) )}\mathrm d v = \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n ( i \frac{u}{\sqrt{n}}x - \Lambda(t+i\frac{u}{\sqrt{n}} ) + \Lambda(t) )}\mathrm d u. \intertext{A Taylor expansion of $\Lambda$ around $t_x$ yields}
+    I_1 &= \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n (\frac{u^2}{2n}\Lambda''(t_x) + \frac1n\eta\left(\frac{u}{\sqrt{n}}\right) )}\mathrm d u = \frac{1}{\sqrt{n}} \int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-\frac{u^2}{2}\Lambda''(t_x) + \eta\left(\frac u{\sqrt{n}}\right) }\mathrm d u, \intertext{where, by hypothesis, $\eta\left( \frac{u}{\sqrt{n}} \right)\to 0$ as $n\to\infty$.}
 \end{align*}
+Notice that \[  \left\lvert\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-\frac{u^2}{2}\Lambda''(t_x) + \eta_n(u) }\mathrm d u \right\rvert \le \int_{-\infty}^{\infty} e^{-\frac{u^2}{2}\Lambda^{''}(t_x) + \xi} \d u < \infty,\]
+where \[\xi \coloneqq \sup\left\{ \eta(u/\sqrt n) :   n\in \mathbb N, u \in [-\epsilon\sqrt{n}, \epsilon\sqrt{n}]  \right\} = \sup\left\{ \eta(u) : u \in [ -\epsilon, \epsilon] \right\} < \infty. \]
+The Dominated Convergence Theorem then yields \[ \lim_{n\to\infty} \sqrt{n} I_1 = \sqrt{ \frac{2\pi}{\Lambda^{''}(t_x)} }.  \]
+
 \printbibliography
 
 \section*{Computations}
