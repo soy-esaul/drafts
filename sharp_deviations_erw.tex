@@ -46,8 +46,7 @@ For the first integral in \cref{eq:integral}, we have
 \end{align*}
 The second integral can be bounded as follows:
 \begin{align*}
-    |I_2| &\le \int_{[-\epsilon,\epsilon]^c} \left| e^{-n (ivx -\Lambda(t+iv) + \Lambda(t))} \right| \mathrm d v = \int_{[-\epsilon,\epsilon]^c} e^{-n \Re( ivx -\Lambda(t+iv) + \Lambda(t))} \mathrm d v = \int_{[-\epsilon,\epsilon]^c} e^{-n ( -\Re(\Lambda(t+iv)) + \Lambda(t))} \mathrm    d v \\
-    &\le \int_{[-\epsilon,\epsilon]^c} e^{-n (\Lambda(t) - \Re(\Lambda(t+iv))} \mathrm d v {\color{red} \longleftarrow \text{ Comment contrôler à niveau }o(e^{-n\Lambda^*(x)}/\sqrt{n}) ? }
+    |I_2| &\le \int_{[-\epsilon,\epsilon]^c} \frac{\left| e^{-n (\Lambda(t_x) - \Lambda(t_x+iv))} \right|}{\sqrt{2e^{-t_x} (\cosh t_x -\cos v) }} \mathrm d v \le \int_{[-\epsilon,\epsilon]^c} \frac{e^{-n (\Lambda(t) - \Re(\Lambda(t+iv))} }{\sqrt{2e^{-t_x}\cosh(t_x)}} \mathrm d v 
 \end{align*}
 For the first integral, we have
 \begin{align*}
