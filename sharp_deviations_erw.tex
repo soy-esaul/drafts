@@ -22,25 +22,27 @@
 \maketitle
 
 Let $S=(S_n, n \ge0)$ be an \gls{erw} with memory parameter $p$ and first step parameter $q$, and define \[ \mu \coloneqq \lim_{n\to\infty} \mathbb E \left[ S_n/n \right] < \infty. \] 
-For any $j \in \mathbb Z$ and every $t>0$, we have
+For any $j = n + 2 k$ with $k\in \mathbb Z$ and every $t>0$, we have
 \begin{align*}
-    \mathbb P ( S_n = j ) = \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v
+    \mathbb P ( S_n = j ) &= \mathbb P \left(\frac{S_n - n}2 = k \right) = \frac{e^{-tk}}{2\pi}\int_{-\pi}^\pi e^{-iuk} \mathbb E[ e^{(t+iu)\frac{s_n-n}{2}} ] \d u \\
+    &= \frac{1}{2\pi} \int_{-\pi}^\pi e^{-(t+iu)\left( k - \frac n2 \right)} m_n\left(\frac{t+iu}{2}\right) \mathrm d u\intertext{taking $v=(u +it)/2$ and $k = (j-n)/2$}
+    &= \frac1\pi \int_{-\frac\pi2}^{\frac\pi2} e^{-(t+iv)j}m_n(t+iv) \d v.
 \end{align*}
-For $x \in (\mu,1)$, we have 
+So that, if $x \in (\mu,1)$, we have 
 \begin{align}
-    \mathbb P( S_n \ge nx ) &= \sum_{j=\lfloor nx \rfloor}^n \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v = \sum_{j= \lfloor nx \rfloor}^\infty \frac{e^{-tj}}{2\pi}\int_{-\pi}^\pi e^{-ivj} m_n(t+iv) \mathrm d v \notag \\
-    &= \frac1{2\pi} \int_{-\pi}^\pi \frac{ e^{-(t+iv)\lfloor nx \rfloor} }{1 - e^{-(t+iv)}}m_n(t+iv) \mathrm d v \notag \\
-    &= \frac{ e^{ -nxt } \phi^n(t) }{2\pi} \int_{-\pi}^\pi \frac{ e^{(nx - \lfloor nx\rfloor )(t+iv)}\frac{m_n(t+iv)}{\phi^n(a;t+iv)} }{ 1- e^{-(t+iv)} }\left(\frac{\phi(t+iv)}{\phi(t)}\right)^n e^{-inxv} \mathrm d v \notag \\
-    &= \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}\mathrm d v + \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\mathrm d v, \label{eq:integral}
+    \mathbb P( S_n \ge nx ) &= \sum_{j=\lceil nx \rceil}^n \frac{e^{-tj}}{\pi}\int_{-\frac\pi2}^{\frac\pi2} e^{-ivj} m_n(t+iv) \mathrm d v = \sum_{j= \lceil nx \rceil}^\infty \frac{e^{-tj}}{\pi}\int_{-\frac\pi2}^{\frac\pi2} e^{-ivj} m_n(t+iv) \mathrm d v \notag \\
+    &= \frac1{\pi} \int_{-\frac\pi2}^{\frac\pi2} \frac{ e^{-(t+iv)\lceil nx \rceil} }{1 - e^{-(t+iv)}}m_n(t+iv) \mathrm d v \notag \\
+    &= \frac{ e^{ -t\lceil nx \rceil } \phi^n(t) }{\pi} \int_{-\frac\pi2}^{\frac\pi2} \frac{ e^{-i v \lceil nx\rceil} }{ 1- e^{-(t+iv)} } \frac{m_n(t+iv)}{\phi^n(t+iv)} \left(\frac{\phi(t+iv)}{\phi(t)}\right)^n \mathrm d v \notag \\
+    &= \frac{ e^{-n(xt-\Lambda(t))- \left\{ nx\right\}t } }{\pi} \left( \int_{-\frac\pi2}^{\frac\pi2} \frac{e^{-n\varphi(v)}}{1-e^{-(t+iv)}}\mathrm d v +  \int_{-\frac\pi2}^{\frac\pi2} \frac{e^{-n\varphi(v)}}{1-e^{-(t+iv)}}r_n(t+iv)\mathrm d v\right), \label{eq:integral}
 \end{align}
-where \[\Lambda(z) \coloneqq \log \phi(z), \] and \[ R_n(t+iv) \coloneqq \frac{ \exp\left( (nx - \lfloor nx\rfloor)(t+iv) \right) }{ 1- e^{-(t+iv)} }\frac{m_n(t+iv)}{\phi^n(t+iv)}. \]
+where \[\Lambda(z) \coloneqq \log \phi(z), \qquad \varphi(v) \coloneqq iv \frac{\lceil nx\rceil}{n} - \Lambda(t+iv) + \Lambda(t), \] and \[ r_n(t+iv) \coloneqq \frac{m_n(t+iv)}{\phi^n(t+iv)} - 1. \]
 
 From now on, we must take $t = t_x \coloneqq \arg\max_{t>0} \left( xt - \Lambda(t) \right)$, which is the unique solution to \[ x = \Lambda'(t_x), \] and it exists since $\Lambda$ is strictly convex. The reason for such a choice comes from the fact that the exponential rate in \cref{eq:integral} is indeed $\Lambda^*(x)\coloneqq \sup_{t>0} (xt - \Lambda(t))$, by the known \gls{ldp} for the \gls{erw} (see eg. \cite{franchini2023large}).
 
-For the first integral, we have
+For the first integral in \cref{eq:integral}, we have
 
 \begin{align*}
-    \int_{-\pi}^\pi e^{-n ( ivx - \Lambda(t+iv ) + \Lambda(t) )}\mathrm d v &= \int_{-\epsilon}^\epsilon e^{-n ( ivx - \Lambda(t+iv ) + \Lambda(t) )}\mathrm d v + \int_{[-\epsilon,\epsilon]^c} e^{-n (ivx -\Lambda(t+iv) + \Lambda(t))} \mathrm d v \eqcolon I_1 + I_2.
+    \int_{-\frac\pi2}^{\frac\pi2} \frac{e^{-n\varphi(v)}}{1-e^{-(t_x+iv)}}\mathrm d v &= \int_{-\epsilon}^\epsilon \frac{e^{-n\varphi(v)}}{1-e^{-(t_x+iv)}}\mathrm d v + \int_{[-\epsilon,\epsilon]^c} \frac{e^{-n\varphi(v)}}{1-e^{-(t_x+iv)}}\mathrm d v \eqcolon I_1 + I_2.
 \end{align*}
 The second integral can be bounded as follows:
 \begin{align*}
@@ -62,7 +64,7 @@ Now, we need to deal with the second integral in \cref{eq:integral}.
 
 \begin{align*}
     %\int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}\mathrm d v + \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\mathrm d v
-    \left\lvert\sqrt{n}\int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\d v\right\rvert \le \sqrt{n}\int_{-\pi}^\pi e^{-n-\Re(\Lambda(t+iv)+\Lambda(t))}\left\lvert \frac{e^{ (nx-\lfloor nx \rfloor)(t+iv) } m_n(t+iv)}{(1-e^{-(t+iv)})\phi^n(t+iv)}-1 \right\rvert \d v\\
+    \left\lvert\sqrt{n}\int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\d v\right\rvert \le \sqrt{n}\int_{-\pi}^\pi e^{-n-\Re(\Lambda(t+iv)+\Lambda(t))}\left\lvert \frac{e^{ (nx-\lceil nx \rceil)(t+iv) } m_n(t+iv)}{(1-e^{-(t+iv)})\phi^n(t+iv)}-1 \right\rvert \d v\\
 \end{align*}
 
 \printbibliography
