@@ -53,9 +53,17 @@ For the first integral, we have
     I_1 &= \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n (\frac{u^2}{2n}\Lambda''(t_x) + \frac1n\eta\left(\frac{u}{\sqrt{n}}\right) )}\mathrm d u = \frac{1}{\sqrt{n}} \int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-\frac{u^2}{2}\Lambda''(t_x) + \eta\left(\frac u{\sqrt{n}}\right) }\mathrm d u, \intertext{where, by hypothesis, $\eta\left( \frac{u}{\sqrt{n}} \right)\to 0$ as $n\to\infty$.}
 \end{align*}
 Notice that \[  \left\lvert\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-\frac{u^2}{2}\Lambda''(t_x) + \eta_n(u) }\mathrm d u \right\rvert \le \int_{-\infty}^{\infty} e^{-\frac{u^2}{2}\Lambda^{''}(t_x) + \xi} \d u < \infty,\]
-where \[\xi \coloneqq \sup\left\{ \eta(u/\sqrt n) :   n\in \mathbb N, u \in [-\epsilon\sqrt{n}, \epsilon\sqrt{n}]  \right\} = \sup\left\{ \eta(u) : u \in [ -\epsilon, \epsilon] \right\} < \infty, \] whcih is finite since $\eta$ is the difference between two continuous functions in $[-\pi,\pi].$
+where \[\xi \coloneqq \sup\left\{ \lvert\eta(u/\sqrt n)\rvert :   n\in \mathbb N, u \in [-\epsilon\sqrt{n}, \epsilon\sqrt{n}]  \right\} = \sup\left\{ \lvert\eta(u)\rvert : u \in [ -\epsilon, \epsilon] \right\} < \infty, \] whcih is finite since $\eta$ is the difference between two continuous functions in $[-\pi,\pi].$
 
 The Dominated Convergence Theorem then yields \[ \lim_{n\to\infty} \sqrt{n} I_1 = \sqrt{ \frac{2\pi}{\Lambda^{''}(t_x)} }.  \]
+Together with the {\color{red}$o(e^{-n\Lambda^*(x)}/\sqrt{n})$ control for $I_2$}, this implies \[ \int_{-\pi}^\pi e^{-n(\Lambda(t_x)-\Lambda(t_x+iv)+\Lambda(t_x))} \d v = \sqrt{\frac{2\pi}{n\Lambda^{''}(t_x)}}\left(1 + o(1)\right).\]
+
+Now, we need to deal with the second integral in \cref{eq:integral}. 
+
+\begin{align*}
+    %\int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}\mathrm d v + \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\mathrm d v
+    \left\lvert\sqrt{n}\int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\d v\right\rvert \le \sqrt{n}\int_{-\pi}^\pi e^{-n-\Re(\Lambda(t+iv)+\Lambda(t))}\left\lvert \frac{e^{ (nx-\lfloor nx \rfloor)(t+iv) } m_n(t+iv)}{(1-e^{-(t+iv)})\phi^n(t+iv)}-1 \right\rvert \d v\\
+\end{align*}
 
 \printbibliography
 
