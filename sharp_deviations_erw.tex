@@ -39,31 +39,34 @@ where \[\Lambda(z) \coloneqq \log \phi(z), \qquad \varphi(v) \coloneqq iv \frac{
 
 From now on, we must take $t = t_x \coloneqq \arg\max_{t>0} \left( xt - \Lambda(t) \right)$, which is the unique solution to \[ x = \Lambda'(t_x), \] and it exists since $\Lambda$ is strictly convex. The reason for such a choice comes from the fact that the exponential rate in \cref{eq:integral} is indeed $\Lambda^*(x)\coloneqq \sup_{t>0} (xt - \Lambda(t))$, by the known \gls{ldp} for the \gls{erw} (see eg. \cite{franchini2023large}).
 
-For the first integral in \cref{eq:integral}, we have
+For the first integral in \cref{eq:integral}, we have, for any $0<\epsilon<\pi/2$
 
 \begin{align*}
     \int_{-\frac\pi2}^{\frac\pi2} \frac{e^{-n\varphi(v)}}{1-e^{-(t_x+iv)}}\mathrm d v &= \int_{-\epsilon}^\epsilon \frac{e^{-n\varphi(v)}}{1-e^{-(t_x+iv)}}\mathrm d v + \int_{[-\epsilon,\epsilon]^c} \frac{e^{-n\varphi(v)}}{1-e^{-(t_x+iv)}}\mathrm d v \eqcolon I_1 + I_2.
 \end{align*}
-The second integral can be bounded as follows:
+We can, thus, choose $\epsilon$ small enough. To deal with the term $I_1$
 \begin{align*}
-    |I_2| &\le \int_{[-\epsilon,\epsilon]^c} \frac{\left| e^{-n (\Lambda(t_x) - \Lambda(t_x+iv))} \right|}{\sqrt{2e^{-t_x} (\cosh t_x -\cos v) }} \mathrm d v \le \int_{[-\epsilon,\epsilon]^c} \frac{e^{-n (\Lambda(t) - \Re(\Lambda(t+iv))} }{\sqrt{2e^{-t_x}\cosh(t_x)}} \mathrm d v 
+    I_1 &= \int_{-\epsilon}^\epsilon \frac{e^{-n ( ivx - \Lambda(t_x+iv ) + \Lambda(t_x) )}}{1-e^{-(t_x + iv)}}\mathrm d v = \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} \frac{e^{-n ( i \frac{u}{\sqrt{n}}x - \Lambda(t_x+i\frac{u}{\sqrt{n}} ) + \Lambda(t_x) )}}{1-e^{-(t_x +i\frac{v}{\sqrt{n}})}}\mathrm d u. \intertext{A Taylor expansion of $\Lambda$ around $t_x$ yields}
+    I_1 &= \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} \frac{e^{-n \left(\frac{u^2}{2n}\Lambda''(t_x) + \frac1n\eta\left(\frac{u}{\sqrt{n}}\right) \right)}}{1-e^{-(t_x + i\frac{u}{\sqrt{n}})}}  \mathrm d u = \frac{1}{\sqrt{n}} \int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} \frac{e^{-\frac{u^2}{2}\Lambda''(t_x) + \eta\left(\frac u{\sqrt{n}}\right) }}{1-e^{-(t_x + i \frac{u}{\sqrt{n}})}} \mathrm d u, \intertext{where, by hypothesis, $\eta\left( \frac{u}{\sqrt{n}} \right)\to 0$ as $n\to\infty$.}
 \end{align*}
-For the first integral, we have
-\begin{align*}
-    I_1 &= \int_{-\epsilon}^\epsilon e^{-n ( ivx - \Lambda(t+iv ) + \Lambda(t) )}\mathrm d v = \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n ( i \frac{u}{\sqrt{n}}x - \Lambda(t+i\frac{u}{\sqrt{n}} ) + \Lambda(t) )}\mathrm d u. \intertext{A Taylor expansion of $\Lambda$ around $t_x$ yields}
-    I_1 &= \frac{1}{\sqrt{n}}\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-n (\frac{u^2}{2n}\Lambda''(t_x) + \frac1n\eta\left(\frac{u}{\sqrt{n}}\right) )}\mathrm d u = \frac{1}{\sqrt{n}} \int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-\frac{u^2}{2}\Lambda''(t_x) + \eta\left(\frac u{\sqrt{n}}\right) }\mathrm d u, \intertext{where, by hypothesis, $\eta\left( \frac{u}{\sqrt{n}} \right)\to 0$ as $n\to\infty$.}
-\end{align*}
-Notice that \[  \left\lvert\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} e^{-\frac{u^2}{2}\Lambda''(t_x) + \eta_n(u) }\mathrm d u \right\rvert \le \int_{-\infty}^{\infty} e^{-\frac{u^2}{2}\Lambda^{''}(t_x) + \xi} \d u < \infty,\]
-where \[\xi \coloneqq \sup\left\{ \lvert\eta(u/\sqrt n)\rvert :   n\in \mathbb N, u \in [-\epsilon\sqrt{n}, \epsilon\sqrt{n}]  \right\} = \sup\left\{ \lvert\eta(u)\rvert : u \in [ -\epsilon, \epsilon] \right\} < \infty, \] whcih is finite since $\eta$ is the difference between two continuous functions in $[-\pi,\pi].$
+Notice that \[  \left\lvert\int_{-\epsilon\sqrt{n}}^{\epsilon\sqrt{n}} \frac{e^{-\frac{u^2}{2}\Lambda''(t_x) + \eta\left(\frac u{\sqrt{n}}\right) }}{1-e^{-(t_x + i \frac{u}{\sqrt{n}})}}\mathrm d u \right\rvert \le \int_{-\infty}^{\infty} \frac{e^{-\frac{u^2}{2}\Lambda^{''}(t_x) + \xi}}{\sqrt{2e^{-t_x}\cosh t_x}} \d u < \infty,\]
+where \[\xi \coloneqq \sup\left\{ \lvert\eta(u/\sqrt n)\rvert :   n\in \mathbb N, u \in [-\epsilon\sqrt{n}, \epsilon\sqrt{n}]  \right\} = \sup\left\{ \lvert\eta(u)\rvert : u \in [ -\epsilon, \epsilon] \right\} < \infty, \] which is finite since $\eta$ is the difference between two continuous functions in $[-\pi,\pi].$
 
-The Dominated Convergence Theorem then yields \[ \lim_{n\to\infty} \sqrt{n} I_1 = \sqrt{ \frac{2\pi}{\Lambda^{''}(t_x)} }.  \]
-Together with the {\color{red}$o(e^{-n\Lambda^*(x)}/\sqrt{n})$ control for $I_2$}, this implies \[ \int_{-\pi}^\pi e^{-n(\Lambda(t_x)-\Lambda(t_x+iv)+\Lambda(t_x))} \d v = \sqrt{\frac{2\pi}{n\Lambda^{''}(t_x)}}\left(1 + o(1)\right).\]
+The Dominated Convergence Theorem then yields \[ \lim_{n\to\infty} \sqrt{n} I_1 = \frac{1}{1-e^{-t_x}}\sqrt{ \frac{2\pi}{\Lambda^{''}(t_x)} }.  \]
+
+The term $I_2$ can be bounded as follows:
+\begin{align*}
+    |I_2| &\le \int_{[-\epsilon,\epsilon]^c} \frac{\left| e^{-n (\Lambda(t_x) - \Lambda(t_x+iv))} \right|}{\sqrt{2e^{-t_x} (\cosh t_x -\cos v) }} \mathrm d v \le \int_{[-\epsilon,\epsilon]^c} \frac{e^{-n (\Lambda(t_x) - \Re(\Lambda(t_x+iv))} }{\sqrt{2e^{-t_x}\cosh(t_x)}} \mathrm d v \intertext{Take $\delta(\epsilon) \coloneqq \inf\{ \Lambda(t_x) - \Re(\Lambda(t_x+iv)) : v \in [-\epsilon, \epsilon]^c \} > 0$, so }
+    \lvert I_2 \rvert &\le \frac{(\pi-2\epsilon) e^{-n \delta(\epsilon)}}{\sqrt{2e^{-t_x}\cosh(t_x)}}, \intertext{and then}
+    \sqrt{n}I_2 &\xrightarrow[n\to\infty]{\phantom{yeii}} 0.
+\end{align*}
+Together with the convergence for $I_1$, this implies \[ \int_{-\pi}^\pi \frac{e^{-n\varphi(u)} }{1-e^{-(t_x + iv)}}\d v = \sqrt{\frac{2\pi}{n\Lambda^{''}(t_x)}}\frac{\left(1 + o(1)\right)}{1 - e^{-t_x}}.\]
+
 
 Now, we need to deal with the second integral in \cref{eq:integral}. 
 
 \begin{align*}
-    %\int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}\mathrm d v + \frac{ e^{-n(xt-\Lambda(t))} }{2\pi} \int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\mathrm d v
-    \left\lvert\sqrt{n}\int_{-\pi}^\pi e^{-n( ivx -  \Lambda(t+iv) + \Lambda(t) )}( R_n(t+iv) - 1)\d v\right\rvert \le \sqrt{n}\int_{-\pi}^\pi e^{-n-\Re(\Lambda(t+iv)+\Lambda(t))}\left\lvert \frac{e^{ (nx-\lceil nx \rceil)(t+iv) } m_n(t+iv)}{(1-e^{-(t+iv)})\phi^n(t+iv)}-1 \right\rvert \d v\\
+    \int_{-\frac\pi2}^{\frac\pi2} \frac{e^{-n\varphi(v)}}{1-e^{-(t+iv)}}r_n(t+iv)\mathrm d v
 \end{align*}
 
 \printbibliography
